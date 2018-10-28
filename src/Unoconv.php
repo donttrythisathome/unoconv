@@ -45,7 +45,7 @@ class Unoconv implements UnoconvInterface
      * @return boolean
      * @throws \Dtth\Unoconv\Exceptions\InvalidCommand
      */
-    public function convert(string $input, string $output, string $format)
+    public function convert(string $input, ?string $output, string $format)
     {
         return $this->resolveCommand(__FUNCTION__, $input, $output, $format)->execute();
     }

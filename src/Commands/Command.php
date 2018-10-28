@@ -39,7 +39,7 @@ abstract class Command
      *
      * @param \Dtth\Unoconv\Contracts\Client $client
      */
-    public function __construct(Client $client, string $file, string $output, string $format)
+    public function __construct(Client $client, string $file, ?string $output, string $format)
     {
         $this->file = $file;
         $this->output = $output;

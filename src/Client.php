@@ -28,10 +28,22 @@ class Client implements ClientInterface
      * Execute the given command.
      *
      * @param \Dtth\Unoconv\Commands\Command $command
-     * @return boolean
+     * @return mixed
      */
     public function executeCommand(Command $command)
     {
+        if (!$command->getOutput()){
+            $resp=  $this->client->post($command->getFormat(),[
+                'multipart'=>[
+                    [
+                        'name'=>'file',
+                        'contents'=>fopen($command->getFile(),'r')
+                    ]
+                ],
+            ]);
+
+            return (string) $resp->getBody();
+        }
         $this->client->post($command->getFormat(),[
             'multipart'=>[
                 [
